@@ -1021,3 +1021,182 @@ In-memory caching of files.
 Watching for updates in the files.
 Proxies to alter file paths.
 Support for custom middlewares (the middleware configuration option).
+
+
+
+
+Browsers
+                     ______   _______
+                    |\     \  \      \
+    .$$$$$$"         \\     \  |     /|
+   .$$$$$$"           \|     |/     //
+  4$$$$$$$$$$$$$"      |     |_____//
+ z$$$$$$$$$$$$$"       |     |\     \
+ """""""3$$$$$"       /     /|\|     |
+       z$$$$P         /_____/ |/_____/|
+                     |     | / |    | |
+                    |_____|/  |____|/
+                                           
+Available browser launchers
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+Chrome and Chrome Canary
+Firefox
+Safari
+PhantomJS
+JSDOM
+Opera
+Internet Explorer
+SauceLabs
+BrowserStack
+many more
+
+
+     )
+  ( /(
+  )\())
+|((_)\      most browser  lanunchers  need to be loaded as plugins
+|_ ((_)
+| |/ /
+  ' <
+ _|\_\
+
+
+adding a browser to a testing suite
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+
+Install the launcher
+     npm install karma-firefox-launcher --save-dev
+
+and it to browsers in the main config file
+after its plug and play
+
+
+
+Capturing any browser manually
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+go to http://localhost:9876/ they say point your browser there but idk
+
+
+Configured launchers
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+
+sauceLabs: {
+  username: 'michael_jackson'
+}
+
+
+customLaunchers: {
+  chrome_without_security: {
+    base: 'Chrome',
+    flags: ['--disable-web-security'],
+    displayName: 'Chrome w/o security'
+  },
+  sauce_chrome_win: {
+    base: 'SauceLabs',
+    browserName: 'chrome',
+    platform: 'windows',
+  }
+}
+
+
+if a customlaunher has a display name it shows up in logs and reports
+
+
+PATH to browser binary
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+each plugin has a path to browser binarys
+
+browsers: ['/usr/local/bin/custom-browser.sh'],
+The browser scripts need to take one argument, which is the URL with the ID-parameter to be used to connect to the server. The supplied ID is used by the server to keep track of which specific browser is captured.
+
+
+
+Plugins
+                     ______   _______
+                    |\     \  \      \
+    .$$$$$$"         \\     \  |     /|
+   .$$$$$$"           \|     |/     //
+  4$$$$$$$$$$$$$"      |     |_____//
+ z$$$$$$$$$$$$$"       |     |\     \
+ """""""3$$$$$"       /     /|\|     |
+       z$$$$P         /_____/ |/_____/|
+                     |     | / |    | |
+                    |_____|/  |____|/
+                                       
+
+so everyting in Karma is a plugin aka NPM module
+
+Installation
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+
+npm install karma-<plugin name> --save-dev
+
+Loading Plugins
+
+plugins: [
+  // Karma will require() these plugins
+  'karma-jasmine',
+  'karma-chrome-launcher'
+
+  // inlined plugins
+  {'framework:xyz': ['factory', factoryFn]},
+  require('./plugin-required-from-config')
+]
+
+
+
+                     ______   _______
+                    |\     \  \      \
+    .$$$$$$"         \\     \  |     /|
+   .$$$$$$"           \|     |/     //
+  4$$$$$$$$$$$$$"      |     |_____//
+ z$$$$$$$$$$$$$"       |     |\     \
+ """""""3$$$$$"       /     /|\|     |
+       z$$$$P         /_____/ |/_____/|
+                     |     | / |    | |
+                    |_____|/  |____|/
