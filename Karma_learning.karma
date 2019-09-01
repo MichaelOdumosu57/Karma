@@ -1190,6 +1190,7 @@ plugins: [
 
 
 
+Developing Plugins
                      ______   _______
                     |\     \  \      \
     .$$$$$$"         \\     \  |     /|
@@ -1200,3 +1201,385 @@ plugins: [
        z$$$$P         /_____/ |/_____/|
                      |     | / |    | |
                     |_____|/  |____|/
+
+
+
+Frameworks
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+its the actual software
+naming converntion karma-*
+
+
+
+
+
+Reporters
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+conosle log everyhting in a nice format
+naming convention karma-*-reporter
+
+
+
+Launchers
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+where the browsers are
+naming convention karma-*-launcher
+sauce labs has one
+
+
+Preprocessors
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+a fn that takes  (content, file, and next), and passes it to the next preprocessor
+
+content-- of the file being processed
+file -- object describing the file being processed
+    path -- the current file
+    originalPath -- the original, unmutated path
+    encodings -- ('gzip', 'compress', 'br', etc.)
+    type: pattern used to match the file
+next fn to call when preprocessing is complete
+
+
+https://karma-runner.github.io/4.0/config/preprocessors.html
+see how preprocess work to do stuff
+    
+
+Crazier Stuff
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+theres a lot od Dependency Injection so node can ask for and interact with almost any Karma component
+
+
+
+Frameworks
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+its the actual software
+naming converntion karma-*
+
+
+
+
+Framework API
+
+ /\ /\
+ / //_/
+/ __ \
+\/  \/
+      
+Karma Framework connects existing testing libraries to Karma's API, so that their results can be displayed in a browser and sent back to the server.
+
+they need window.__karma__.start method Karma will call to start execution
+it will take a n object that returns these methods
+
+.result a single test has finished
+.complete the client completed execution of all the tests
+.error an error happened in the client
+.info other data (e.g. number of tests or debugging message
+
+
+.result method
+
+{
+    // test id
+    id: String,
+
+     // test description
+    description: String,
+
+    // the suite to which this test belongs. potentially nested.
+    suite: Array[String],
+
+    // an array of string error messages that might explain a failure.
+    // this is required if success is false.
+    log: Array[String],
+
+    success: Boolean, // pass / fail
+
+    skipped: Boolean // skipped / ran
+}
+
+
+
+Public Api
+
+                     ______   _______
+                    |\     \  \      \
+    .$$$$$$"         \\     \  |     /|
+   .$$$$$$"           \|     |/     //
+  4$$$$$$$$$$$$$"      |     |_____//
+ z$$$$$$$$$$$$$"       |     |\     \
+ """""""3$$$$$"       /     /|\|     |
+       z$$$$P         /_____/ |/_____/|
+                     |     | / |    | |
+                    |_____|/  |____|/
+                                         
+
+you can call the Karma API and start a process for it be meanigful in your project
+
+file:karmaAPI.js
+
+karma Server
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+
+karma.Server(options, [callback=process.exit])
+theses a capital S
+
+
+karma start
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+server.start()
+
+
+server.refresh
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+
+server.refreshFiles()
+server.refreshFile(path)
+
+returns a promise
+
+
+
+Events
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+
+the server object is an event emitter
+
+listening
+Arguments:
+
+port: Port number
+Begin accepting connections on the specified port.
+
+browser_register
+Arguments:
+
+browser: The browser instance
+A new browser was opened, but is not ready yet.
+
+browser_error
+Arguments:
+
+browser: The browser instance
+error: The error that occurred
+There was an error in this browser instance.
+
+browser_start
+Arguments:
+
+browser: The browser instance
+info: Details about the run
+A test run is beginning in this browser.
+
+browser_complete
+Arguments:
+
+browser: The browser instance
+result: Test results
+A test run has completed in this browser.
+
+browsers_change
+Arguments:
+
+browsers: A collection of browser instances
+The list of browsers has changed.
+
+browsers_ready
+All browsers are ready for execution
+
+run_start
+Arguments:
+
+browsers: A collection of browser instances on which tests are executed
+A test run starts.
+
+run_complete
+Arguments:
+
+browsers: A collection of browser instances
+results: A list of results
+A test run was completed.
+
+
+
+karma.runner
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+runner.run(options, [callback=process.exit])
+
+The equivalent of karma run
+
+
+
+karma.stopper
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+stopper.stop(options, [callback=process.exit])
+
+equivlant to karma stop
+
+
+
+karma.config.parseConfig([configFilePath], [cliOptions])
+
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+karma.config.parseConfig([configFilePath], [cliOptions])
+
+This function will load given config file and returns a filled config object. used for karma intergration
+
+const cfg = require('karma').config;
+const path = require('path');
+// Read karma.conf.js, but override port with 1337
+const karmaConfig = cfg.parseConfig(path.resolve('./karma.conf.js'), { port: 1337 } );
+
+
+
+karma.constants
+   _  __
+  |"|/ /
+  | ' /
+U/| . \\u
+  |_|\_\
+,-,>> \\,-.
+ \.)   (_/
+
+
+constants.VERSION
+The current version of karma
+
+constants.DEFAULT_PORT
+The default port used for the karma server
+
+constants.DEFAULT_HOSTNAME
+The default hostname used for the karma server
+
+constants.LOG_DISABLE
+The value for disabling logs
+
+constants.LOG_ERROR
+The value for the log error level
+
+constants.LOG_WARN
+The value for the log warn level
+
+constants.LOG_INFO
+The value for the log info level
+
+constants.LOG_DEBUG
+The value for the log debug level
+
+constants.LOG_PRIORITIES
+An array of log levels in descending order, i.e. LOG_DISABLE, LOG_ERROR, LOG_WARN, LOG_INFO, and LOG_DEBUG
+
+constants.COLOR_PATTERN
+The default color pattern for log output
+
+constants.NO_COLOR_PATTERN
+The default pattern for log output without color
+
+constants.CONSOLE_APPENDER
+The default console appender
+
+constants.EXIT_CODE
+The exit code
+
+Callback function notes
+If there is an error, the error code will be provided as the second parameter to the error callback.

@@ -1,9 +1,14 @@
-describe('Karma Testing', () => {
+window.__karma__.start = function(   dev_obj   ){
 
-
-    it('should work', () => {
+    describe('Karma Testing', () => {
     
-        expect('karma test').toEqual('karma test');
+    
+        it('should work', () => {
+        
+            expect('karma test').toEqual('karma test');
+        });
+    
     });
 
-});
+}
+
